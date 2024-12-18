@@ -1,18 +1,19 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-const port = 3000
+const express = require('express');
 
-app.use(bodyParser.json());
+function calculateSum(n) {
+  let ans = 0;
+  for (let i = 1; i <= n; i++) {
+    ans += i;
+  }
+  return ans;
+}
 
-app.post('/backend-api/conversation', (req, res) => {
-    const message = req.body.message;
-    console.log(message);
-    res.json({
-        output: "2 + 2 = 4"
-    })
-})
+const app = express();
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.get("/", function (req, res) {
+  const n = req.query.n;
+  const ans = calculateSum(n);
+  res.send(ans.toString());
+});
+
+app.listen(3000);
