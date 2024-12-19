@@ -62,8 +62,8 @@ app.delete('/', (req, res) => {
             msg: "Done!"
         })
     } else{
-        res.json({
-            msg: "done"
+        res.status(411).json({
+            msg: "There are no unhealthy kidneys"
         })
     }
 })
